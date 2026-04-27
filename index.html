@@ -30,12 +30,75 @@
             <div id="flex">
                 
                 <main>
-                    <h1>Welcome to my Layout Maker!</h1>
-                    <p><strong>Please read this first!</strong></p>
-                    <p>This tool generates a layout that is responsive, which means it looks great on phones! Use dropdowns above to customize your layout's general features. Click the button to generate your HTML and CSS, and paste it into a file on Neocities.</p>
-                    <p>Then you can replace all of the text with your own. For more customization, the CSS code has comments to explain what each part changes. Please read through the code - even if you have no idea what it means.</p>
-                    <p>If you're feeling up for a challenge, I put together <a href="/sadgrl/learn/understanding-tweaking-my-layout-maker/" target="_blank">a guide</a> which goes over the structure of how this layout is built, along with some specific tips on how to edit it in certain ways.</p>
-                    <p>Check the links in the sidebar for more resources to build your own website!</p>
+                    <h1>Welcome to my world!</h1>
+body { 
+            background-color: #08031A;
+            background-image: url('https://sadhost.neocities.org/images/tiles/purplesky.gif');
+            background-size: 65px;
+            margin: 0; 
+            padding: 20px; 
+            font-family: 'Nunito', sans-serif;
+            color: #fceaff;
+        }
+        #container { max-width: 900px; margin: 0 auto; }
+        .box { background-color: #13092D; border: 1px solid #ED64F5; padding: 10px; }
+        h1, h2, strong { color: #ED64F5; }
+        a { color: #ED64F5; font-weight: bold; }
+        
+        /* 万事屋对话框的专属样式 */
+        .gintama-dialog {
+            background: white; 
+            color: black; 
+            border: 4px double black; 
+            padding: 15px; 
+            margin: 15px 0; 
+            display: flex; 
+            align-items: center; 
+            max-width: 550px;
+        }
+        .gintama-dialog img { width: 80px; image-rendering: pixelated; margin-right: 15px; }
+        .gintama-dialog strong { display: block; margin-bottom: 5px; }
+    </style>
+</head>
+<body>
+
+    <div id="container">
+        <h1>Welcome to my Portfolio!</h1>
+        <div class="box">
+            <p>这个网页的作品都是这个作者姐姐一个人搭起来的哦！</p>
+            <p>（在这里可以继续写你的作品介绍...）</p>
+        </div>
+
+        <hr style="margin: 40px 0; border: 1px dashed #ED64F5;">
+
+        <div class="gintama-dialog">
+            <img src="银八老师.jpg">
+            <div>
+                <strong style="color: blue;">坂田银时：</strong>
+                <p style="margin: 0;">“喂喂，既然都看到这里了，不点一下那个剧本合集就出去吗？”<br>
+                “阿银我可是为了攒圣代钱很努力在推销啊...现在的人怎么这么冷漠啊！”</p>
+            </div>
+        </div>
+
+        <div class="gintama-dialog" style="margin-left: 40px;">
+            <img src="新吧唧.jpg">
+            <div>
+                <strong style="color: #444;">新八：</strong>
+                <p style="margin: 0;">“现在可是经济下行啊银桑，不卖力一点是不会有人为你停留的！”<br>
+                “神乐酱，快介绍一下作者的作品，别让HR就这样跑了！这可是我们万事屋新生意！”</p>
+            </div>
+        </div>
+
+        <div class="gintama-dialog" style="margin-left: 80px;">
+            <img src="神乐酱.JPG">
+            <div>
+                <strong style="color: #ff4500;">神乐：</strong>
+                <p style="margin: 0;">“哎呀吵死了，不就是介绍吗阿鲁！HR你看好了，这些作品都是作者姐姐一个人搭起来的哦！”<br>
+                “她现在正在努力找工作，你看她这么努力的份上就收了她吧！”</p>
+            </div>
+        </div>
+
+    </div> </body>
 
                     <p> - Cat Ipsum - </p>
                     <p>Rub my belly hiss swipe at owner's legs sniff catnip and act crazy growl at dogs in my sleep sit on the laptop for hiss at vacuum cleaner i like to spend my days sleeping and eating fishes that my human fished for me.</p>
@@ -334,71 +397,4 @@
 
     
 
-   body { 
-            background-color: #08031A;
-            background-image: url('https://sadhost.neocities.org/images/tiles/purplesky.gif');
-            background-size: 65px;
-            margin: 0; 
-            padding: 20px; 
-            font-family: 'Nunito', sans-serif;
-            color: #fceaff;
-        }
-        #container { max-width: 900px; margin: 0 auto; }
-        .box { background-color: #13092D; border: 1px solid #ED64F5; padding: 10px; }
-        h1, h2, strong { color: #ED64F5; }
-        a { color: #ED64F5; font-weight: bold; }
-        
-        /* 万事屋对话框的专属样式 */
-        .gintama-dialog {
-            background: white; 
-            color: black; 
-            border: 4px double black; 
-            padding: 15px; 
-            margin: 15px 0; 
-            display: flex; 
-            align-items: center; 
-            max-width: 550px;
-        }
-        .gintama-dialog img { width: 80px; image-rendering: pixelated; margin-right: 15px; }
-        .gintama-dialog strong { display: block; margin-bottom: 5px; }
-    </style>
-</head>
-<body>
 
-    <div id="container">
-        <h1>Welcome to my Portfolio!</h1>
-        <div class="box">
-            <p>这个网页的作品都是这个作者姐姐一个人搭起来的哦！</p>
-            <p>（在这里可以继续写你的作品介绍...）</p>
-        </div>
-
-        <hr style="margin: 40px 0; border: 1px dashed #ED64F5;">
-
-        <div class="gintama-dialog">
-            <img src="银八老师.jpg">
-            <div>
-                <strong style="color: blue;">坂田银时：</strong>
-                <p style="margin: 0;">“喂喂，既然都看到这里了，不点一下那个剧本合集就出去吗？”<br>
-                “阿银我可是为了攒圣代钱很努力在推销啊...现在的人怎么这么冷漠啊！”</p>
-            </div>
-        </div>
-
-        <div class="gintama-dialog" style="margin-left: 40px;">
-            <img src="新吧唧.jpg">
-            <div>
-                <strong style="color: #444;">新八：</strong>
-                <p style="margin: 0;">“现在可是经济下行啊银桑，不卖力一点是不会有人为你停留的！”<br>
-                “神乐酱，快介绍一下作者的作品，别让HR就这样跑了！这可是我们万事屋新生意！”</p>
-            </div>
-        </div>
-
-        <div class="gintama-dialog" style="margin-left: 80px;">
-            <img src="神乐酱.JPG">
-            <div>
-                <strong style="color: #ff4500;">神乐：</strong>
-                <p style="margin: 0;">“哎呀吵死了，不就是介绍吗阿鲁！HR你看好了，这些作品都是作者姐姐一个人搭起来的哦！”<br>
-                “她现在正在努力找工作，你看她这么努力的份上就收了她吧！”</p>
-            </div>
-        </div>
-
-    </div> </body> </html>
