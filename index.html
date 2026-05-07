@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Andrea Bao — Content · Narrative · Cross-cultural</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #e8e0f8;
+    --bg2: #ddd4f5;
+    --purple: #5a3fa0;
+    --purple-light: #3a2570;
+    --purple-dim: rgba(90,63,160,0.1);
+    --purple-border: rgba(90,63,160,0.2);
+    --text: #160f35;
+    --text-mid: rgba(22,15,53,0.68);
+    --text-dim: rgba(22,15,53,0.38);
+    --line: rgba(90,63,160,0.15);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: linear-gradient(180deg, #dde8f8 0%, #d4d0f5 40%, #c8b8f0 70%, #bda8e8 100%);
+    background-attachment: fixed;
+    color: var(--text);
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 3rem;
+    background: rgba(232,224,248,0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 0.5px solid var(--line);
+  }
+
+  .nav-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--purple-light);
+    letter-spacing: 0.08em;
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--text-dim);
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    text-transform: lowercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--purple-light); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 3rem 5rem;
+    position: relative;
+    border-bottom: 0.5px solid var(--line);
+  }
+
+  .hero-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--purple);
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .hero-tag::before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 0.5px;
+    background: var(--purple);
+  }
+
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(5rem, 13vw, 12rem);
+    font-weight: 400;
+    line-height: 0.95;
+    letter-spacing: 0.02em;
+    color: var(--text);
+    margin-bottom: 2.5rem;
+    width: 100%;
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color: var(--purple);
+  }
+
+  .hero-meta {
+    display: flex;
+    gap: 4rem;
+    align-items: flex-start;
+  }
+
+  .hero-desc {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    line-height: 1.8;
+    color: rgba(22,15,53,0.82);
+    max-width: 400px;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 3rem;
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .stat-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.15em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+  }
+
+  .stat-value {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--purple-light);
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 2rem;
+    right: 3rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    writing-mode: vertical-rl;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .hero-scroll::after {
+    content: '';
+    display: block;
+    width: 0.5px;
+    height: 40px;
+    background: var(--purple-border);
+  }
+
+  /* SECTIONS */
+  section {
+    padding: 6rem 3rem;
+    border-bottom: 0.5px solid var(--line);
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 4rem;
+  }
+
+  .section-number {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--purple);
+    letter-spacing: 0.1em;
+  }
+
+  .section-title {
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: start;
+  }
+
+  .about-text {
+    font-size: 1.3rem;
+    line-height: 1.8;
+    color: rgba(22,15,53,0.85);
+    font-weight: 300;
+  }
+
+  .about-text strong {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .about-right {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .about-block-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--purple);
+    margin-bottom: 0.75rem;
+  }
+
+  .skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .skill-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    color: var(--purple-light);
+    background: var(--purple-dim);
+    border: 0.5px solid var(--purple-border);
+    padding: 6px 14px;
+    border-radius: 2px;
+    letter-spacing: 0.05em;
+  }
+
+  .lang-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .lang-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 14px;
+    color: var(--text-mid);
+  }
+
+  .about-block-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--purple);
+    margin-bottom: 0.75rem;
+  }
+
+  .lang-dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--purple);
+    flex-shrink: 0;
+  }
+
+  /* PROJECTS */
+  .projects-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .project-item {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 3rem;
+    align-items: start;
+    padding: 2.5rem 0;
+    border-top: 0.5px solid var(--line);
+    cursor: pointer;
+    transition: background 0.2s;
+    border-radius: 4px;
+  }
+
+  .project-item:last-child {
+    border-bottom: 0.5px solid var(--line);
+  }
+
+  .project-item:hover {
+    background: rgba(155,143,212,0.04);
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin: 0 -1rem;
+  }
+
+  .project-year {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--text-dim);
+    padding-top: 3px;
+  }
+
+  .project-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3rem;
+    font-weight: 400;
+    color: var(--text);
+    letter-spacing: 0.04em;
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+  }
+
+  .project-role {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    color: var(--purple);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .project-desc {
+    font-size: 20px;
+    line-height: 1.75;
+    color: rgba(22,15,53,0.82);
+  }
+
+  .project-tags {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: flex-end;
+  }
+
+  .ptag {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* CASE STUDY EXPANDED */
+  .case-study {
+    display: none;
+    grid-column: 1 / -1;
+    background: var(--bg2);
+    border: 0.5px solid var(--purple-border);
+    border-radius: 4px;
+    padding: 2rem 2.5rem;
+    margin-top: 1rem;
+  }
+
+  .case-study.open { display: block; }
+
+  .case-study p {
+    font-size: 19px;
+    line-height: 1.85;
+    color: rgba(22,15,53,0.82);
+  }
+
+  .case-study p + p { margin-top: 1rem; }
+
+  .case-study em {
+    font-style: italic;
+    color: var(--purple-light);
+  }
+
+  /* EXPERIENCE */
+  .exp-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .exp-item {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 3rem;
+    padding: 2rem 0;
+    border-top: 0.5px solid var(--line);
+  }
+
+  .exp-item:last-child { border-bottom: 0.5px solid var(--line); }
+
+  .exp-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--text-dim);
+    letter-spacing: 0.08em;
+    padding-top: 3px;
+  }
+
+  .exp-title {
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  .exp-org {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--purple);
+    letter-spacing: 0.08em;
+    margin-bottom: 0.75rem;
+  }
+
+  .exp-desc {
+    font-size: 20px;
+    line-height: 1.75;
+    color: rgba(22,15,53,0.82);
+  }
+
+  /* CONTACT */
+  .contact-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .contact-big {
+    font-size: clamp(2.5rem, 5vw, 5rem);
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    line-height: 1.1;
+  }
+
+  .contact-big a {
+    color: var(--purple);
+    text-decoration: none;
+    border-bottom: 0.5px solid var(--purple-border);
+    transition: border-color 0.2s;
+  }
+
+  .contact-big a:hover { border-color: var(--purple); }
+
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: flex-end;
+    padding-bottom: 0.5rem;
+  }
+
+  .contact-link {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--text-dim);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    transition: color 0.2s;
+  }
+
+  .contact-link:hover { color: var(--purple-light); }
+
+  /* FOOTER */
+  footer {
+    padding: 1.5rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-text {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+  }
+
+  .hashtag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 0.75rem;
+  }
+
+  .hashtag {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    color: var(--purple);
+    letter-spacing: 0.06em;
+    opacity: 0.85;
+  }
+
+  .hashtag:hover { opacity: 1; }
+
+  .writing-genre {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3.5rem;
+    letter-spacing: 0.06em;
+    color: rgba(90,63,160,0.25);
+    line-height: 1;
+    margin-bottom: 2rem;
+    border-bottom: 0.5px solid var(--line);
+    padding-bottom: 1rem;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-tag { animation: fadeUp 0.6s ease forwards; }
+  .hero h1 { animation: fadeUp 0.6s 0.1s ease forwards; opacity: 0; animation-fill-mode: forwards; }
+  .hero-meta { animation: fadeUp 0.6s 0.2s ease forwards; opacity: 0; animation-fill-mode: forwards; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 1.25rem 1.5rem; }
+    .nav-links { gap: 1.5rem; }
+    .hero { padding: 0 1.5rem 4rem; }
+    .hero h1 { font-size: 3rem; }
+    .hero-meta { flex-direction: column; gap: 2rem; }
+    section { padding: 4rem 1.5rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .project-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    .project-tags { flex-direction: row; align-items: flex-start; }
+    .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    .contact-inner { flex-direction: column; gap: 2rem; align-items: flex-start; }
+    footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-name">Andrea Bao</a>
+  <ul class="nav-links">
+    <li><a href="#work">work</a></li>
+    <li><a href="#writing">writing</a></li>
+    <li><a href="#about">about</a></li>
+    <li><a href="#experience">experience</a></li>
+    <li><a href="#contact">contact</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <div class="hero-tag">Content · Narrative · Cross-cultural</div>
+  <h1>I tell stories across<br><em>languages</em> and formats.</h1>
+  <div class="hero-meta">
+    <p class="hero-desc">MA candidate at HKBU with a background in English literature and a habit of making things — short films, analytical reports, SOPs for government-commissioned projects. I'm drawn to the space where content meets execution: how a project gets built, and how it lands with people — and what you do differently next time.</p>
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-label">Based in</span>
+        <span class="stat-value">Hong Kong</span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">Available</span>
+        <span class="stat-value">Jul 2026</span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">Languages</span>
+        <span class="stat-value">ZH · EN · FR</span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">Seeking</span>
+        <span class="stat-value">Content · Ops · Localization</span>
+      </div>
+    </div>
+  </div>
+  <span class="hero-scroll">scroll</span>
+</div>
+
+<section id="work">
+  <div class="section-header">
+    <span class="section-number">01</span>
+    <span class="section-title">Selected Work</span>
+  </div>
+
+  <div class="projects-list">
+
+    <div class="project-item" onclick="toggleCase('case1')">
+      <div>
+        <div class="project-year">2025</div>
+        <div class="project-title">Infernal Hamlet</div>
+        <div class="project-role">Writer · Director</div>
+        <div class="project-tags" style="flex-direction:row; align-items:flex-start; margin-top:1rem;">
+          <span class="ptag">Short Film</span>
+          <span class="ptag">~20 min</span>
+          <span class="ptag">Cross-cultural</span>
+        </div>
+      </div>
+      <div class="project-desc">A Hong Kong localization of Hamlet, reimagining the protagonist as Harper — daughter of Infernal Affairs' undercover officer Chan Wing-yan. Raised by the man who killed her father, she must navigate surveillance, inherited loyalty, and the slow collapse of everything she believed.</div>
+    </div>
+    <div class="case-study" id="case1">
+      <p>A Hong Kong localization of Hamlet, reimagining the protagonist as Harper — daughter of Infernal Affairs' undercover officer Chan Wing-yan. Raised by the man who killed her father, she must navigate surveillance, inherited loyalty, and the slow collapse of everything she believed.</p>
+      <p>The adaptation strips out Hamlet's central question of revenge and replaces it with something harder: <em>can you trust what you see?</em> Harper doesn't dramatically delay — she accumulates doubt. A dream. A slip of the tongue. A photo turned face-down. By the time she knows the truth, the question is no longer whether to act, but whether she has any right to.</p>
+      <p>The film's emotional core is the relationship between Harper and Olivia — Ophelia reimagined as Hanzhen's daughter, who joined the police for love and hid her family not out of malice, but out of wanting to be seen as herself. Her death isn't caused by madness but by a fight Harper started. The first "To be or not to be" is Harper's breakdown after losing her. The second is voiceover over a blood-soaked document on a rooftop — addressed to the audience, unanswered.</p>
+      <p>Three characters, three irreconcilable reasons for being on that rooftop. No one gets what they came for.</p>
+    </div>
+
+    <div class="project-item" onclick="toggleCase('case2')">
+      <div>
+        <div class="project-year">2024</div>
+        <div class="project-title">Blanche</div>
+        <div class="project-role">Writer · Director · Full-cycle Production</div>
+        <div class="project-tags" style="flex-direction:row; align-items:flex-start; margin-top:1rem;">
+          <span class="ptag">Short Film</span>
+          <span class="ptag">~20 min</span>
+          <span class="ptag">French</span>
+        </div>
+      </div>
+      <div class="project-desc">Blanche idolizes her classmate Diane — until she discovers Diane's excellence was borrowed from someone else entirely. Years later, when Diane reappears genuinely transformed, Blanche must confront what she actually wanted all along.</div>
+    </div>
+    <div class="case-study" id="case2">
+      <p>Blanche idolizes her classmate Diane — until she discovers Diane's excellence was borrowed from someone else entirely. Years later, when Diane reappears genuinely transformed, Blanche must confront what she actually wanted all along.</p>
+      <p>The film's emotional core is a layered dream sequence: Blanche first imagines Diane during a group discussion, then falls asleep and meets her own internal version of Diane, who finally draws out the jealousy and desire Blanche has never admitted. The friendship is rendered in fragments — Diane pulling Blanche forward by the hand, teaching her French pronunciation, watching Chungking Express together.</p>
+      <p>Dreams by The Cranberries plays over these moments, chosen deliberately over the Wong Kar-wai version: a piece of Irish indie rock carrying the weight of a Hong Kong memory. Written and shot in French. Managed full production pipeline from script to post-production.</p>
+    </div>
+
+    <div class="project-item" onclick="toggleCase('case3')">
+      <div>
+        <div class="project-year">2024</div>
+        <div class="project-title">Global Mobile Game Narrative Analysis</div>
+        <div class="project-role">Lead Researcher</div>
+        <div class="project-tags" style="flex-direction:row; align-items:flex-start; margin-top:1rem;">
+          <span class="ptag">Research</span>
+          <span class="ptag">Industry Report</span>
+        </div>
+      </div>
+      <div class="project-desc">Structural deconstruction of narrative mechanisms in top-tier global mobile games, evaluating how storytelling affects user retention and brand localization for overseas markets. Applied literary theory to commercial product analysis.</div>
+    </div>
+    <div class="case-study" id="case3">
+      <p>Conducted structural deconstruction of narrative mechanisms in top-tier global mobile games. Evaluated how storytelling affects user retention and brand localization for overseas markets, producing a comprehensive industry report.</p>
+      <p>The research focused on how narrative design functions differently across cultural markets — what holds attention in one context, and what needs to be rebuilt from scratch in another. Applied literary theory to commercial product analysis.</p>
+    </div>
+
+  </div>
+</section>
+
+<section id="about">
+  <div class="section-header">
+    <span class="section-number">02</span>
+    <span class="section-title">About</span>
+  </div>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>I'm an MA candidate at HKBU with a background in English literature and <strong>a habit of making things</strong> — short films, analytical reports, SOPs for government-commissioned projects.</p>
+      <br>
+      <p>I'm drawn to the space where content meets execution: how a project gets built, and how it lands with people — and <strong>what you do differently next time</strong>.</p>
+    </div>
+    <div class="about-right">
+      <div>
+        <div class="about-block-label">Languages</div>
+        <div class="lang-list">
+          <div class="lang-item"><span class="lang-dot"></span>Mandarin — Native</div>
+          <div class="lang-item"><span class="lang-dot"></span>English — TEM-8 / IELTS 6.5</div>
+          <div class="lang-item"><span class="lang-dot"></span>French — Conversational</div>
+        </div>
+      </div>
+      <div>
+        <div class="about-block-label">Skills</div>
+        <div class="skills-list">
+          <span class="skill-tag">Narrative design</span>
+          <span class="skill-tag">Content strategy</span>
+          <span class="skill-tag">SOP / operations</span>
+          <span class="skill-tag">Scriptwriting</span>
+          <span class="skill-tag">Video production</span>
+          <span class="skill-tag">Adobe Premiere</span>
+          <span class="skill-tag">Stakeholder mgmt</span>
+          <span class="skill-tag">Cross-cultural comms</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="writing">
+  <div class="section-header">
+    <span class="section-number">03</span>
+    <span class="section-title">Writing</span>
+  </div>
+
+  <div class="projects-list">
+
+    <div class="writing-genre"># Short Fiction</div>
+
+    <div class="project-item" onclick="toggleCase('write1')">
+      <div>
+        <div class="project-year">2026</div>
+        <div class="project-title">Why Is Love So Embarrassing?</div>
+        <div class="hashtag-row" style="margin-top:6px">
+          <span class="hashtag">#multi-voice</span>
+          <span class="hashtag">#zhihu-format</span>
+          <span class="hashtag">#love</span>
+          <span class="hashtag">#anonymous</span>
+        </div>
+      </div>
+      <div class="project-desc">Three anonymous voices on falling in love — structured as a Zhihu thread. A video game character, a best friend, a PhD boyfriend who never dresses up for dates.</div>
+    </div>
+    <div class="case-study" id="write1">
+      <p>The extended exercise: write about the process of falling in love using mental, relational, and material processes. Rather than a single narrator, the piece uses a Zhihu-style Q&amp;A format — three anonymous commenters, three completely different kinds of love, all arriving at the same conclusion about embarrassment.</p>
+      <p>The first commenter fell in love with a video game character and deleted the entire game trying to delete him. The second is a woman who only understood she was a lesbian the night her best friend's boyfriend came to dinner. The third stays in a relationship her friends find humiliating, for one reason: <em>he will always welcome me home.</em></p>
+      <p>The piece ends with a meta-comment from 2026: all three voices were written by the same person.</p>
+      <p><a href="Profolio_2.pdf" style="color:var(--purple); font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.08em;">Read full portfolio →</a></p>
+    </div>
+
+    <div class="project-item" onclick="toggleCase('write2')">
+      <div>
+        <div class="project-year">2026</div>
+        <div class="project-title">Fart Situation</div>
+        <div class="hashtag-row" style="margin-top:6px">
+          <span class="hashtag">#stream-of-consciousness</span>
+          <span class="hashtag">#women</span>
+          <span class="hashtag">#unsaid-things</span>
+          <span class="hashtag">#montage</span>
+        </div>
+      </div>
+      <div class="project-desc">A class reunion, ten years later. Two women who have never said the right thing to each other, standing in a restaurant bathroom, trying again.</div>
+    </div>
+    <div class="case-study" id="write2">
+      <p>Inspired by Horatia Ewing's style: a story where some truth of a relationship goes unspoken. Written using stream-of-consciousness and montage techniques — the prose fragments when the narrator's anxiety spikes, reassembles when she steadies.</p>
+      <p>The story traces a decade of unsaid things between two women through the texture of a single evening: the food that tastes wrong, the poem read in a stairwell that no one responded to, the moment someone says <em>"we should be friends again"</em> and the narrator thinks <em>I never wanted to be friends with you</em> but says something else entirely.</p>
+      <p><a href="Profolio_in_Aesthetics_class.pdf" style="color:var(--purple); font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.08em;">Read full portfolio →</a></p>
+    </div>
+
+    <div class="writing-genre"># Flash Fiction</div>
+
+    <div class="project-item" onclick="toggleCase('write3')">
+      <div>
+        <div class="project-year">2026</div>
+        <div class="project-title">Annuata</div>
+        <div class="hashtag-row" style="margin-top:6px">
+          <span class="hashtag">#imitation</span>
+          <span class="hashtag">#calvino</span>
+          <span class="hashtag">#invisible-cities</span>
+          <span class="hashtag">#memory</span>
+        </div>
+      </div>
+      <div class="project-desc">A city that only appears in spring. Written in the style of Calvino's Invisible Cities — addressed to an emperor, reported by a traveller who sneaks in during winter to find the truth.</div>
+    </div>
+    <div class="case-study" id="write3">
+      <p>Annuata is a season city. Sometimes visible, sometimes not. A student remembers a swing near a kindergarten. An old man remembers only a railway. An office worker remembers both, vaguely.</p>
+      <p>The traveller sneaks in during winter and finds an abandoned kindergarten and a swing near the railway remains. The city is all three things at once, and none of them.</p>
+      <p><a href="Profolio_2.pdf" style="color:var(--purple); font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.08em;">Read full portfolio →</a></p>
+    </div>
+
+  </div>
+</section>
+
+<section id="experience">
+  <div class="section-header">
+    <span class="section-number">04</span>
+    <span class="section-title">Experience</span>
+  </div>
+  <div class="exp-list">
+    <div class="exp-item">
+      <div class="exp-date">May – Jul 2024</div>
+      <div>
+        <div class="exp-title">Project Lead (Intern)</div>
+        <div class="exp-org">Guangxi College for Preschool Education</div>
+        <div class="exp-desc">Independently led end-to-end execution of 2 provincial training programs commissioned by the Guangxi Department of Education. Managed 300+ participants. Engineered a 30-point SOP from scratch within 7 days. Resolved 4+ high-stakes emergencies and authored a 20-page post-project analytical report.</div>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-date">Jan – Feb 2023</div>
+      <div>
+        <div class="exp-title">Service Assistant (Intern)</div>
+        <div class="exp-org">Bank of China</div>
+        <div class="exp-desc">Managed high-volume daily client traffic, streamlining queuing processes and resolving cross-border financial inquiries. Assisted in financial document filing and observed core banking risk-control workflows.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="section-header">
+    <span class="section-number">05</span>
+    <span class="section-title">Contact</span>
+  </div>
+  <div class="contact-inner">
+    <div class="contact-big">
+      Let's work<br>
+      <a href="mailto:ctrlmyguts@163.com">together →</a>
+    </div>
+    <div class="contact-links">
+      <a href="mailto:ctrlmyguts@163.com" class="contact-link">ctrlmyguts@163.com</a>
+      <a href="tel:+85246839678" class="contact-link">(852) 46839678</a>
+      <span class="contact-link">Hong Kong</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-text">© 2025 Andrea Bao</span>
+  <span class="footer-text">MA Candidate · HKBU · Available Jul 2026</span>
+</footer>
+
+<script>
+  function toggleCase(id) {
+    const el = document.getElementById(id);
+    el.classList.toggle('open');
+  }
+</script>
+
+</body>
+</html>
